@@ -181,6 +181,40 @@ en:
             cancel: Cancel
             update: Update Snippet
 
+        menus:
+          index:
+            title: Navigation Builder
+            new_link: Create New Navigation Group
+            select: Select Navigation Group
+            edit: Edit
+            menu_items: Navigation Items
+            delete: Delete
+            are_you_sure: Are you sure you want to delete this menu?
+          new:
+            title: New Navigation
+          edit:
+            title: Edit Navigation
+          form:
+            create: Create Navigation
+            update: Update Navigation
+
+        menu_items:
+          index:
+            title: Menu Items
+            new_link: Create New Menu Item
+            select: Select Menu Item
+            edit: Edit
+            delete: Delete
+            are_you_sure: Are you sure you want to delete this menu item?
+          new:
+            title: New Menu Item
+          edit:
+            title: Edit Menu Item
+          form:
+            create: Create Menu Item
+            update: Update Menu Item
+
+
         revisions:
           reverted: Content Reverted
           record_not_found: Record Not Found

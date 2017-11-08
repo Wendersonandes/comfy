@@ -181,6 +181,53 @@ pt-BR:
             cancel: Cancelar
             update: Atualizar Fragmento
 
+        menus:
+          created: Menu created
+          creation_failure: Failed to create menu
+          updated: Menu updated
+          update_failure: Failed to update menu
+          deleted: Menu deleted
+          not_found: Menu not found
+
+          index:
+            title: Menus
+            new_link: Adicionar Novo Menu
+            select: Selecionar Menu
+            edit: Editar
+            menu_items: Menu Items
+            delete: Deletar
+            are_you_sure: Tem certeza que deseja deletar este menu?
+          new:
+            title: Novo Menu
+          edit:
+            title: Editar Menu
+          form:
+            create: Criar Menu
+            update: Atualizar Menu
+
+        menu_items:
+          created: Menu Item created
+          creation_failure: Failed to create menu item
+          updated: Menu Item updated
+          update_failure: Failed to update menu item
+          deleted: Menu Item deleted
+          not_found: Menu Item not found
+
+          index:
+            title: Menu Items
+            new_link: Adicionar Novo Item ao Menu
+            select: Selecionar Item Menu 
+            edit: Editar
+            delete: Deletar
+            are_you_sure: Tem certeza que deseja deletar este item?
+          new:
+            title: Novo Item de Menu
+          edit:
+            title: Editar Item de Menu
+          form:
+            create: Adicionar Item de Menu
+            update: Atualizar Item de Menu
+
         revisions:
           reverted: Conteúdo revertido com sucesso.
           record_not_found: Registro não encontrado.
