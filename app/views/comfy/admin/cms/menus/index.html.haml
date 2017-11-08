@@ -1,0 +1,21 @@
+.page-header
+  = link_to t('.new_link'), new_comfy_admin_cms_site_menu_path(@site), :class => 'btn pull-right'
+  %h2= t('.title')
+
+%table.table.table-hover.table-bordered
+  %tbody.sortable
+    - @menus.each do |menu|
+      %tr{:id => dom_id(menu)}
+        %td
+          .icon
+            - if !params[:category].present? && @site.menus.count > 1
+              .dragger
+                %span &#8645;
+        %td.main
+          .item-title
+            = link_to menu.label, comfy_admin_cms_site_menu_menu_items_path(@site, menu)
+        %td
+          .btn-group.btn-group-sm
+            = link_to t('.edit'), edit_comfy_admin_cms_site_menu_path(@site, menu), :class => 'btn btn-default'
+            = link_to t('.menu_items'), comfy_admin_cms_site_menu_menu_items_path(@site, menu), :class => 'btn btn-default'
+            = link_to t('.delete'), comfy_admin_cms_site_menus_path(@site, menu), :method => :delete, :data => {:confirm => t('.are_you_sure')}, :class => 'btn btn-small btn-danger'
