@@ -14,3 +14,7 @@ Gemfile.lock
 .ruby-version
 /.sass-cache
 coverage/
+#Ignore vim backup files
+*.swp
+*.swo
+
