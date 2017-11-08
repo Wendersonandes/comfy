@@ -15,6 +15,9 @@ window.CMS.init = ->
   CMS.timepicker()
   CMS.page_blocks()
   CMS.page_file_popovers()
+  CMS.showable_radio_buttons()
+  CMS.hideable_radio_buttons()
+  CMS.init_showable_hideable_dependencies()
   CMS.mirrors()
   CMS.page_update_preview()
   CMS.page_update_publish()
@@ -182,6 +185,22 @@ window.CMS.categories = ->
     $('.categories.editable', '.categories-widget').toggle()
     $('.edit', '.categories-widget').toggle()
     $('.done', '.categories-widget').toggle()
+
+window.CMS.showable_radio_buttons = ->
+  $('[data-show]').on 'click change', ->
+    $active_field = $(@)
+    if $active_field.is(':checked')
+      $show = $ $active_field.data('show')
+      $show.removeClass 'hidden'
+
+window.CMS.hideable_radio_buttons = ->
+  $('[data-hide]').on 'click change', ->
+    $active_field = $(@)
+    if $active_field.is(':checked')
+      $hide = $ $active_field.data('hide')
+      $hide.addClass 'hidden'
+CMS.init_showable_hideable_dependencies = ->
+  $('[data-show], [data-hide]').trigger('change')
 
 
 # If we are inside an iframe remove the columns and just keep the center column content.
