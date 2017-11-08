@@ -116,6 +116,37 @@ class CreateCms < ActiveRecord::Migration
     end
     add_index :comfy_cms_categorizations, [:category_id, :categorized_type, :categorized_id], :unique => true,
       :name => 'index_cms_categorizations_on_cat_id_and_catd_type_and_catd_id'
+
+    # -- Carousel ---------------------------------------------------------
+    create_table :comfy_cms_slides do |t|
+      t.integer :site_id,          :null => false
+      t.string  :file_file_name,    :null => false
+      t.string  :file_content_type, :null => false
+      t.integer :file_file_size,    :null => false
+      t.integer :position,          :null => false, :default => 0
+      t.timestamps
+    end
+
+    # -- Menus ---------------------------------------------------------
+		create_table :comfy_cms_menus do |t|
+			t.integer :site_id
+			t.string  :label
+			t.string  :identifier
+			t.integer :position,        :null => false, :default => 0
+			t.timestamps
+		end
+        
+    # -- MenuItems ---------------------------------------------------------
+		create_table :comfy_cms_menu_items do |t|
+			t.integer :menu_id
+			t.string :label
+			t.integer :page_id
+			t.string :link
+			t.integer :position,        :null => false, :default => 0
+			t.string :menu_item_type
+			t.timestamps
+		end
+
   end
 
   def self.down
@@ -125,6 +156,7 @@ class CreateCms < ActiveRecord::Migration
     drop_table :comfy_cms_snippets
     drop_table :comfy_cms_blocks
     drop_table :comfy_cms_files
+    drop_table :comfy_cms_slides
     drop_table :comfy_cms_revisions
     drop_table :comfy_cms_categories
     drop_table :comfy_cms_categorizations
