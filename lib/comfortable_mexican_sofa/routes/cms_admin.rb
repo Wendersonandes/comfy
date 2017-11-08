@@ -32,6 +32,19 @@ class ActionDispatch::Routing::Mapper
               end
             end
             resources :categories
+						resources :menus do
+              put :reorder, :on => :collection
+							resources :menu_items do
+								put :reorder, :on => :collection
+							end
+						end
+
+						#resources :menu_items do
+              #put :reorder, :on => :collection
+						#end
+						resources :slides do
+							put :reorder, :on => :collection
+						end
           end
         end
       end
