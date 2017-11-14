@@ -39,6 +39,7 @@ class Comfy::Cms::File < ActiveRecord::Base
   after_destroy :reload_blockable_cache
 
   # -- Scopes ---------------------------------------------------------------
+  default_scope -> { order('comfy_cms_files.position') }
   scope :not_page_file, -> { where(:block_id => nil)}
   scope :images,        -> { where(:file_content_type => IMAGE_MIMETYPES) }
   scope :not_images,    -> { where('file_content_type NOT IN (?)', IMAGE_MIMETYPES) }
