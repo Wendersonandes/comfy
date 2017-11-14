@@ -11,8 +11,6 @@
       = link_to file.label, edit_comfy_admin_cms_site_file_path(@site, file)
       = render :partial => 'comfy/admin/cms/categories/categories', :object => file
     .item-meta
-      %input.file-path{:type => 'text', :value => file.file.url, :readonly => 'readonly'}
-
       = link_to file.file.url, :title => file.file_file_name, :target => '_blank' do
         %span.glyphicon.glyphicon-link
   %td
