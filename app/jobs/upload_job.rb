@@ -1,3 +1,4 @@
+require 'sucker_punch'
 class UploadJob
   include SuckerPunch::Job
 

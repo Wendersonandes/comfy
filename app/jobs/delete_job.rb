@@ -1,3 +1,4 @@
+require 'sucker_punch'
 class DeleteJob
   include SuckerPunch::Job
 

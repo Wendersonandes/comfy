@@ -5,13 +5,11 @@ class ImageUploader < Shrine
 
   plugin :determine_mime_type
   plugin :remote_url, max_size: 20*1024*1024
-  plugin :direct_upload, presign: true, max_size: 2000
   plugin :remove_attachment
   plugin :store_dimensions
   plugin :validation_helpers
   plugin :versions
   plugin :module_include
-  plugin :upload_options, cache: {acl: "public-read"}
 
   Attacher.validate do
     validate_max_size 5.megabytes, message: 'is too large (max is 5 MB)'
