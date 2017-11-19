@@ -3,8 +3,18 @@
   %label.control-label.col-sm-2
     Start
   .col-sm-10
-    = form.date_select_without_bootstrap :start
-    = form.time_select_without_bootstrap :start, :ignore_date => true
+    .col-sm-6
+      .row
+        %label
+          Data
+      .row
+        = form.date_select_without_bootstrap :start
+    .col-sm-6
+      .row
+        %label
+          Horário
+      .row
+        = form.time_select_without_bootstrap :start, :ignore_date => true
 
 = form.text_field :url_ticket
 = form.text_area :description
