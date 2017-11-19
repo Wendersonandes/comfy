@@ -58,10 +58,10 @@ protected
 	end
 
 	def load_menu
-			@menu = @site.menus.find(params[:id])
+		@menu = @site.menus.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-			flash[:error] = I18n.t('comfy.admin.cms.menus.not_found')
-			redirect_to :action => :index
+		flash[:error] = I18n.t('comfy.admin.cms.menus.not_found')
+		redirect_to :action => :index
 	end
 	
   def menu_params
