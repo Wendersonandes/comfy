@@ -1,0 +1,5 @@
+.page-header
+  %h2 New Event
+
+= comfy_form_for @event, :as => :event, :url => {:action => :create}  do |form|
+  = render form

@@ -1,0 +1,13 @@
+= form.text_field :title
+.form-group
+  %label.control-label.col-sm-2
+    Start
+  .col-sm-10
+    = form.date_select_without_bootstrap :start
+    = form.time_select_without_bootstrap :start, :ignore_date => true
+
+= form.text_field :url_ticket
+= form.text_area :description
+
+= form.form_group :class => 'form-actions' do
+  = form.submit :class => 'btn btn-primary'
