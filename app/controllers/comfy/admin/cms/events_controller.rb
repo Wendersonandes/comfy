@@ -44,7 +44,7 @@ class Comfy::Admin::Cms::EventsController < Comfy::Admin::Cms::BaseController
   end
 
   def reorder
-    (params[:event] || []).each_with_index do |id, index|
+    (params[:comfy_cms_event] || []).each_with_index do |id, index|
       if (event = Comfy::Cms::Event.find_by_id(id))
         event.update_column(:position, index)
       end
