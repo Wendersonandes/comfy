@@ -41,6 +41,9 @@ class ActionDispatch::Routing::Mapper
 						resources :events do
 							put :reorder, :on => :collection
 						end
+						resources :videos do
+							put :reorder, :on => :collection
+						end
 						resources :slides do
 							put :reorder, :on => :collection
 						end

@@ -10,6 +10,7 @@
     %li= active_link_to t('comfy.admin.cms.base.snippets'), comfy_admin_cms_site_snippets_path(@site)
     %li= active_link_to t('comfy.admin.cms.base.carousel'), comfy_admin_cms_site_slides_path(@site)
     %li= active_link_to 'Events', comfy_admin_cms_site_events_path(@site)
+    %li= active_link_to 'Video', comfy_admin_cms_site_videos_path(@site)
     %li
       - unless is_active_link?(comfy_admin_cms_site_files_path(@site))
         %a.cms-files-open-modal{:href => '#', :title => 'Open library'}

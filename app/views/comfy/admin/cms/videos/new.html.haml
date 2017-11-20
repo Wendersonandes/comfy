@@ -1,0 +1,5 @@
+.page-header
+  %h2 New Video
+
+= comfy_form_for @video, :as => :video, :url => {:action => :create}  do |form|
+  = render form

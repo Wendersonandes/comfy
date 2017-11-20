@@ -1,0 +1,29 @@
+.page-header
+  = link_to 'New Video', new_comfy_admin_cms_site_video_path(@site), :class => 'btn btn-default pull-right'
+  %h2= 'Videos'
+
+= paginate @videos, :theme => 'comfy'
+
+%table.table.table-hover.table-bordered
+  %tbody.sortable
+    %tr
+      %th Order
+      %th.main Url
+      %th Description
+      %th
+    - @videos.each do |video|
+
+      %tr{:id => dom_id(video)}
+        %td
+          .icon
+            .dragger
+              %span &#8645;
+
+        %td.main= video.url
+        %td= video.description
+        %td
+          .btn-group.btn-group-sm
+            = link_to 'Edit', edit_comfy_admin_cms_site_video_path(@site, video), :class => 'btn btn-default'
+            = link_to 'Delete', comfy_admin_cms_site_video_path(@site, video), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
+
+= paginate @videos, :theme => 'comfy'
