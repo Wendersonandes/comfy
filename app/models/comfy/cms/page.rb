@@ -42,6 +42,9 @@ class Comfy::Cms::Page < ActiveRecord::Base
   default_scope -> { order('comfy_cms_pages.position') }
   scope :published, -> { where(:is_published => true) }
 
+
+  include ImageUploader[:featured_image]
+
   # -- Class Methods --------------------------------------------------------
   # Tree-like structure for pages
   def self.options_for_select(site, page = nil, current_page = nil, depth = 0, exclude_self = true, spacer = '. . ')
