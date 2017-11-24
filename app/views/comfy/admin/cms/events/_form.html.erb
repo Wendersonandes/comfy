@@ -1,0 +1,41 @@
+<%= form.text_field :title %>
+<div class="form-group">
+  <label class="control-label col-sm-2">
+    Start
+  </label>
+  <div class="col-sm-10">
+    <div class="col-sm-6">
+      <div class="row">
+        <label>
+          Data
+        </label>
+      </div>
+      <div class="row">
+        <%= form.date_select_without_bootstrap :start %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row">
+        <label>
+          Horário
+        </label>
+      </div>
+      <div class="row">
+        <%= form.time_select_without_bootstrap :start, :ignore_date => true %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= form.url_field :url_ticket %>
+<%= form.text_area :description %>
+<%= form.form_group :class => 'form-actions' do %>
+  <%= form.submit :class => 'btn btn-primary' %>
+<% end %>
+<%= form.form_group :is_published do %>
+  <%= form.check_box :is_published, :label => t('.is_published') %>
+<% end %>
+<%= form.form_group :is_featured do %>
+  <%= form.check_box :is_featured, :label => t('.is_featured') %>
+<% end %>
+
+
