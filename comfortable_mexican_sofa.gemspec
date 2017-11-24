@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
 	s.add_dependency 'roda'
 	s.add_dependency 'fastimage'
 	s.add_dependency 'shrine'
-	s.add_dependency 'sucker_punch', '~> 2.0'
+	s.add_dependency 'sucker_punch',			'~> 2.0'
+	s.add_dependency "nokogiri",					'>= 1.7.2'
 
 end
