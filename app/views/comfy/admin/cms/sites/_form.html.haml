@@ -1,15 +1,25 @@
 = render 'comfy/admin/cms/partials/site_form_before', :form => form
 
-= form.text_field :label, :data => {:slugify => @site.new_record?}
-= form.text_field :identifier, :data => {:slug => true}
-= form.text_field :hostname
-= form.text_field :path
-= form.select :locale, ComfortableMexicanSofa.config.locales.to_a.collect{|l| ["#{l[1]} (#{l[0]})", l[0]]}
-= form.form_group do
-  = form.check_box :is_mirrored, :label => t('.is_mirrored')
+%fieldset.col-md-12
+  %legend Site Settings
+  = form.text_field :label, :data => {:slugify => @site.new_record?}
+  = form.text_field :identifier, :data => {:slug => true}
+  = form.text_field :hostname
+  = form.text_field :path
+  = form.select :locale, ComfortableMexicanSofa.config.locales.to_a.collect{|l| ["#{l[1]} (#{l[0]})", l[0]]}
+  = form.form_group do
+    = form.check_box :is_mirrored, :label => t('.is_mirrored')
 
 = render 'comfy/admin/cms/partials/site_form_after', :form => form
-
+%fieldset.col-md-12
+  %legend Site Seo
+  = form.text_area :description, :rows => 5
+  = form.text_field :keywords
+  = form.email_field :email_contact
+  = form.url_field :facebook_profile
+  = form.url_field :soundcloud_profile
+  = form.url_field :instagram_profile
+  = form.url_field :youtube_profile
 = form.form_group :class => 'form-actions' do
   = form.primary t(@site.new_record?? '.create' : '.update')
   = link_to t('.cancel'), comfy_admin_cms_sites_path, :class => 'btn btn-link'

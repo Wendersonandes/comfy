@@ -1,0 +1,22 @@
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
+  <title>
+    <%= ComfortableMexicanSofa.config.cms_title %>
+  </title>
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag     'comfy/admin/cms/application', 'data-turbolinks-track' => true %>
+  <%= yield :head %>
+  <%= javascript_include_tag  'comfy/admin/cms/application', 'data-turbolinks-track' => true %>
+  <% if @site && @site.persisted? %>
+    <script>
+      
+      CMS.file_upload_path  = '#{comfy_admin_cms_site_files_path(@site)}';
+      CMS.pages_path        = '#{comfy_admin_cms_site_pages_path(@site)}';
+      CMS.locale            = '#{I18n.locale}';
+
+
+    </script>
+  <% end %>
+  <%= render 'comfy/admin/cms/partials/html_head' %>
+</head>
+
