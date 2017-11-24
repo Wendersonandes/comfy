@@ -8,9 +8,8 @@
   %tbody.sortable
     %tr
       %th Order
-      %th.main Url
-      %th Description
-      %th
+      %th.main Thumb
+      %th Actions
     - @videos.each do |video|
 
       %tr{:id => dom_id(video)}
@@ -19,8 +18,7 @@
             .dragger
               %span &#8645;
 
-        %td.main= video.url
-        %td= video.description
+        %td.main= image_tag(video.video_thumb('small'))
         %td
           .btn-group.btn-group-sm
             = link_to 'Edit', edit_comfy_admin_cms_site_video_path(@site, video), :class => 'btn btn-default'
