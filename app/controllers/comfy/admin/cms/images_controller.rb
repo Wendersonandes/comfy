@@ -21,12 +21,15 @@ class Comfy::Admin::Cms::ImagesController < Comfy::Admin::Cms::BaseController
   end
 
   def create
-    @image.save!
-    flash[:success] = 'Image created'
-    redirect_to :action => :index, :id => @image
-  rescue ActiveRecord::RecordInvalid
-    flash.now[:danger] = 'Failed to create Image'
-    render :action => :new
+    respond_to do |format|
+      if @image.save
+        format.json { render :json => @image , status: :created  }
+      else
+				flash.now[:danger] = 'Failed to create Image'
+				render :action => :new
+      end
+    end
+
   end
 
   def update
