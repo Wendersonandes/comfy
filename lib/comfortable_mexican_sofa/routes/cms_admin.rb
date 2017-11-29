@@ -8,6 +8,7 @@ class ActionDispatch::Routing::Mapper
         namespace :cms, :as => :admin_cms, :path => options[:path], :except => :show do
           get '/', :to => 'base#jump'
           resources :sites do
+						mount ImageUploader::UploadEndpoint, :at => "/attachments/image"
             resources :pages do
               get  :form_blocks,    :on => :member
               get  :toggle_branch,  :on => :member
@@ -44,6 +45,13 @@ class ActionDispatch::Routing::Mapper
 						resources :videos do
 							put :reorder, :on => :collection
 						end
+						resources :galleries do
+							resources :images do
+								put :reorder, :on => :collection
+							end
+							put :reorder, :on => :collection
+						end
+						resources :images, :only => [:index] 
 						resources :slides do
 							put :reorder, :on => :collection
 						end
