@@ -1,20 +1,20 @@
 (function($){
 	window.CMS || (window.CMS = {});
 	return window.CMS.sortable_grid = function(){
-		$('.sortable-grid').sortable({
-			handle: 'div.dragger',
-			placeholder: 'ma1 h4 w4 fl thumbnail ba b--dashed bw1 b--green',
-			axis:   'x',
-			opacity: 0.5,
-			start: function(e, ui){
-				$(ui.placeholder).hide(300);
-			},
-			change: function (e,ui){
-				$(ui.placeholder).hide().show(300);
-			},
-			update: function(){
-				return $.post(`${CMS.galleries_path}/${$(this).data('gallery-id')}/images/reorder`, `_method=put&${$(this).sortable('serialize')}`);
-			} 
+		var el = document.getElementById("sortable_gallery");
+		Sortable.create(el, {
+			animation: 150,
+			handle: '.dragger',
+			onEnd: function(){
+				updated_order = this.toArray()
+				// send the updated order via ajax
+				$.ajax({
+					type: "PUT",
+					url: CMS.gallery_images_reorder_path,
+					data: { comfy_cms_image: updated_order }
+				});
+
+			}
 		});
 	}
 })(jQuery);
