@@ -17,12 +17,13 @@
 </div>
 <% end %>
 
-<%= form.form_group :is_published do %>
-  <%= form.check_box :is_published, :label => t('.is_published') %>
-<% end %>
-
-<%= form.form_group :is_featured do %>
-  <%= form.check_box :is_featured, :label => t('.is_featured') %>
+<%= form.form_group do %>
+	<label class="checkbox-inline" for="">
+		<%= form.check_box :is_published, :label => t('.is_published') %>
+	</label>
+	<label class="checkbox-inline" for="">
+		<%= form.check_box :is_featured, :label => t('.is_featured') %>
+	</label>
 <% end %>
 
 <%= form.form_group :class => 'form-actions' do %>
