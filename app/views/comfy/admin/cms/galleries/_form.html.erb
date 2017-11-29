@@ -1,0 +1,38 @@
+<%= form.url_field :title %>
+<%= form.text_area :description %>
+
+<%= form.form_group do %>
+	<div class="well well-sm">
+		<div class="ba b--dashed bw3 relative h-100">
+			<div class="h5 relative" id="galleryUploaderContainer">
+				<%= file_field_tag :file, :class => "w-100 h-100 absolute o-0 image_uploader pointer" %>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<%= form.form_group do %>
+	<label class="checkbox-inline" for="">
+		<%= form.check_box :is_published, :label => t('.is_published') %>
+	</label>
+	<label class="checkbox-inline" for="">
+		<%= form.check_box :is_featured, :label => t('.is_featured') %>
+	</label>
+<% end %>
+
+<%= form.form_group do %>
+	<% if form.object %>
+		<%= render 'image' %>
+	<% end %>
+<% end %>
+
+<%= form.form_group :class => 'form-actions' do %>
+  <%= form.submit :class => 'btn btn-primary' %>
+<% end %>
+
+<% content_for :javascript do %>
+	<script>
+		CMS.image_upload_endpoint = "<%= comfy_admin_cms_site_image_uploader_upload_endpoint_path(@site) %>"
+		CMS.gallery_images_path = "<%= comfy_admin_cms_site_gallery_images_path(@site, @gallery) %>"
+	</script>
+<% end %>

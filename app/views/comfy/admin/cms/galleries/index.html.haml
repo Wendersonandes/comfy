@@ -1,0 +1,27 @@
+.page-header
+  = link_to 'New gallery', new_comfy_admin_cms_site_gallery_path(@site), :class => 'btn btn-default pull-right'
+  %h2= 'gallery'
+
+= paginate @galleries, :theme => 'comfy'
+
+%table.table.table-hover.table-bordered
+  %tbody.sortable
+    %tr
+      %th Order
+      %th.main Title
+      %th Actions
+    - @galleries.each do |gallery|
+
+      %tr{:id => dom_id(gallery)}
+        %td
+          .icon
+            .dragger
+              %span &#8645;
+
+        %td.main= gallery.title
+        %td
+          .btn-group.btn-group-sm
+            = link_to 'Edit', edit_comfy_admin_cms_site_gallery_path(@site, gallery), :class => 'btn btn-default'
+            = link_to 'Delete', comfy_admin_cms_site_gallery_path(@site, gallery), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
+
+= paginate @galleries, :theme => 'comfy'

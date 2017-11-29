@@ -1,0 +1,5 @@
+.page-header
+  %h2 New gallery
+
+= comfy_form_for @gallery, :as => :gallery, :url => {:action => :create}  do |form|
+  = render form

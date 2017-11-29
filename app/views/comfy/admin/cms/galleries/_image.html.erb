@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-md-12 sortable-grid" data-gallery-id="<%= @gallery.id %>">
+		<% @gallery.images.each do |image| %>
+			<div class="ma1 relative h4 w4 fl thumbnail cover item" id="<%= dom_id(image) %>" style="background:url(<%= image.file_url(:thumb) %>) no-repeat center;">
+				<div class="absolute blue f3 top-1 left-1 pointer dragger">
+					<span class="glyphicon glyphicon-move"></span>
+				</div>
+				<div class="f3 absolute bottom-1 right-1">
+					<span class="glyphicon glyphicon-bin"></span>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
