@@ -12,6 +12,7 @@ window.CMS.init = ->
   CMS.wysiwyg()
   CMS.codemirror()
   CMS.sortable_list()
+  CMS.sortable_grid()
   CMS.timepicker()
   CMS.page_blocks()
   CMS.page_file_popovers()
@@ -23,6 +24,7 @@ window.CMS.init = ->
   CMS.page_update_publish()
   CMS.categories()
   CMS.files()
+  CMS.image_uploader()
 
 window.CMS.slugify = ->
   slugify = (str) ->
