@@ -3,6 +3,7 @@
 	return window.CMS.image_uploader = function(){
 		$('.image_uploader[type=file]').fileupload({
 			add: function(e, data) {
+				data.progressBar = $('<div class="progress w-100"><div class="progress-bar"></div></div>').prependTo('.sortable-grid');
 				var options = {
 					extension: data.files[0].name.match(/(\.\w+)?$/)[0], // set extension
 					_: Date.now(),                                       // prevent caching
@@ -15,7 +16,14 @@
 				});
 			},
 
+			progress: function(e, data) {
+				var progress = parseInt(data.loaded / data.total * 100, 10);
+				var percentage = progress.toString() + '%'
+				data.progressBar.find(".progress-bar").css("width", percentage).html(percentage);
+			},
+
 			done: function(e, data) {
+				data.progressBar.remove();
 				var image = {
 					id: /cache\/(.+)/.exec(data.formData.key)[1], // we have to remove the prefix part
 					storage: 'cache',
@@ -32,7 +40,9 @@
 						image: { file: JSON.stringify(image)}
 					},
 					success: function(image){
-						console.log('it works!')
+						var image_template = HandlebarsTemplates['image'](image);
+						$(image_template).hide().prependTo('.sortable-grid').fadeIn("slow");
+						CMS.sortable_grid();
 					}
 				})
 			}
