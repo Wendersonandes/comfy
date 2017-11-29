@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require jquery-ui
 #= require jquery-fileupload/basic
+#= require handlebars.runtime
 #= require codemirror
 #= require codemirror/modes/css
 #= require codemirror/modes/htmlmixed
@@ -21,8 +22,10 @@
 #= require comfy/admin/cms/lib/redactor/table
 #= require comfy/admin/cms/lib/redactor/video
 #= require_directory ./lib/redactor/i18n/
+#= require comfy/admin/cms/lib/Sortable.min
 #= require comfy/admin/cms/base
 #= require comfy/admin/cms/uploader
 #= require comfy/admin/cms/image_uploader
 #= require comfy/admin/cms/files
 #= require comfy/admin/cms/custom
+#= require_tree ./templates/
