@@ -9,9 +9,11 @@ class Comfy::Cms::Site < ActiveRecord::Base
     site.has_many :files
     site.has_many :slides
     site.has_many :events
+    site.has_many :galleries
     site.has_many :videos
     site.has_many :menus
     site.has_many :menu_items, :through => :menus
+    site.has_many :images, :through => :galleries
     site.has_many :categories
   end
 
