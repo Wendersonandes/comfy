@@ -40,6 +40,7 @@ class ActionDispatch::Routing::Mapper
 							end
 						end
 						resources :events do
+							get :get_facebook_events, :on => :collection
 							put :reorder, :on => :collection
 						end
 						resources :videos do
@@ -47,11 +48,15 @@ class ActionDispatch::Routing::Mapper
 						end
 						resources :galleries do
 							resources :images do
+                post :trash, :on => :member
 								put :reorder, :on => :collection
 							end
 							put :reorder, :on => :collection
 						end
-						resources :images, :only => [:index] 
+						resources :images, :only => [:index]  do
+							get	:trash_index, :on => :collection
+							post :recover, :on => :member
+						end
 						resources :slides do
 							put :reorder, :on => :collection
 						end

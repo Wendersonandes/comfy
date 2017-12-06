@@ -1,0 +1,46 @@
+<div class="page-header">
+  <%= link_to 'New Event', new_comfy_admin_cms_site_event_path(@site), :class => 'btn btn-default pull-right' %>
+	<button id="getFacebookEvents" class="btn btn-default pull-right">
+		Get my events from facebook
+	</button>
+
+  <h2>
+    <%= 'Events' %>
+  </h2>
+
+</div>
+<%= paginate @events, :theme => 'comfy' %>
+<table class="table table-hover table-bordered">
+  <tbody class="sortable">
+    <tr class="table-head">
+      <th>Order</th>
+      <th class="main">Start</th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+    <% @events.each do |event| %>
+      <tr id="<%= dom_id(event) %>">
+        <td>
+          <div class="icon">
+            <div class="dragger">
+              <span>&#8645;</span>
+            </div>
+          </div>
+        </td>
+        <td class="main">
+          <%= event.start %>
+        </td>
+        <td>
+          <%= event.title %>
+        </td>
+        <td>
+          <div class="btn-group btn-group-sm">
+            <%= link_to 'Edit', edit_comfy_admin_cms_site_event_path(@site, event), :class => 'btn btn-default' %>
+            <%= link_to 'Delete', comfy_admin_cms_site_event_path(@site, event), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @events, :theme => 'comfy' %>

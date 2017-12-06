@@ -25,6 +25,10 @@ window.CMS.init = ->
   CMS.categories()
   CMS.files()
   CMS.image_uploader()
+  CMS.trash_image()
+  CMS.recover_image()
+  CMS.load_events_from_facebook()
+  CMS.save_event_from_facebook()
 
 window.CMS.slugify = ->
   slugify = (str) ->
