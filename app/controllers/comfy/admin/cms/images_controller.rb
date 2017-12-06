@@ -1,11 +1,11 @@
 class Comfy::Admin::Cms::ImagesController < Comfy::Admin::Cms::BaseController
 
-  before_filter :load_gallery
+  before_filter :load_gallery, :except => [:trash_index, :recover]
   before_action :build_image,  :only => [:new, :create]
   before_action :load_image,   :only => [:show, :edit, :update, :destroy]
 
   def index
-		@images = @gallery.images.page(params[:page])
+		@images = @gallery.images.no_trashed.page(params[:page])
   end
 
   def show
@@ -29,7 +29,6 @@ class Comfy::Admin::Cms::ImagesController < Comfy::Admin::Cms::BaseController
 				render :action => :new
       end
     end
-
   end
 
   def update
@@ -56,6 +55,33 @@ class Comfy::Admin::Cms::ImagesController < Comfy::Admin::Cms::BaseController
     head :ok
   end
 
+	def trash
+		image = @gallery.images.find(params[:id])
+    respond_to do |format|
+      if image.update_column(:is_trashed, true )
+        format.json { render :json => image , status: :created  }
+      else
+				flash.now[:danger] = 'Failed to trash Image'
+				render :action => :index
+      end
+    end
+	end
+
+	def recover
+		image = @site.images.find(params[:id])
+    respond_to do |format|
+      if image.update_column(:is_trashed, false )
+        format.json { render :json => image , status: :created  }
+      else
+				flash.now[:danger] = 'Failed to recover Image'
+				render :action => :index
+      end
+    end
+	end
+
+  def trash_index
+		@images = @site.images.trashed.page(params[:page])
+  end
 
 protected
 

@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h2>Trashed Images</h2>
+</div>
+
+<%= paginate @images, :theme => 'comfy' %>
+<div class="row">
+	<div class="col-md-12" >
+		<% @images.each do |image| %>
+			<div class="ma1 relative h5 w5 fl thumbnail cover" style="background:url(<%= image.file_url(:thumb) %>) no-repeat center;">
+				<div class="f3 absolute bottom-1 right-1 recover-image" data-id="<%= image.id %>" >
+					<span class="glyphicon glyphicon-bin">Recover me</span>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+<%= paginate @images, :theme => 'comfy' %>
+<% content_for :javascript do %>
+	<script>
+		CMS.image_path = "<%= comfy_admin_cms_site_images_path(@site) %>"
+	</script>
+<% end %>

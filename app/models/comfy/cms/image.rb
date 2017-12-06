@@ -15,6 +15,8 @@ class Comfy::Cms::Image < ActiveRecord::Base
 
   # -- Scopes ---------------------------------------------------------------
   default_scope -> { order('comfy_cms_images.row_order') }
+	scope :trashed, -> {where(:is_trashed => true)}
+	scope :no_trashed, -> {where(:is_trashed => false)}
 protected
 
 end
