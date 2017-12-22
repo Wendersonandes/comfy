@@ -4,9 +4,10 @@
 
 - if @site && @site.persisted?
   :javascript
+    CMS.current_site_path      = '#{comfy_admin_cms_site_path(@site)}'
     CMS.file_upload_path  = '#{comfy_admin_cms_site_files_path(@site)}';
     CMS.pages_path        = '#{comfy_admin_cms_site_pages_path(@site)}';
-    CMS.galleries_path        = '#{comfy_admin_cms_site_galleries_path(@site)}';
+    CMS.galleries_path    = '#{comfy_admin_cms_site_galleries_path(@site)}';
     CMS.locale            = '#{I18n.locale}';
 
 - if content_for(:javascript)
