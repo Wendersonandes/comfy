@@ -8,7 +8,9 @@
 		<% @images.each do |image| %>
 			<div class="ma1 relative h5 w5 fl thumbnail cover" style="background:url(<%= image.file_url(:thumb) %>) no-repeat center;">
 				<div class="f3 absolute bottom-1 right-1 recover-image" data-id="<%= image.id %>" >
-					<span class="glyphicon glyphicon-bin">Recover me</span>
+					<a href="#">
+						<i class="fa fa-undo" aria-hidden="true"></i>
+					</a>
 				</div>
 			</div>
 		<% end %>
