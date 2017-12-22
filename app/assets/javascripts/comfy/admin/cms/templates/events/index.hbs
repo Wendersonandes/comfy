@@ -1,0 +1,26 @@
+<tbody>
+	<tr class="table-head">
+		<th>Start</th>
+		<th>Title</th>
+		<th class="main">Description</th>
+		<th>Actions</th>
+	</tr>
+	{{#each this as |event|}}
+		<tr class="tr-facebook-event-body" id="{{facebook_id}}" data-event="{{json event}}">
+			<td>
+				{{start}}
+			</td>
+			<td>
+				{{title}}
+			</td>
+			<td class="main">
+				{{description}}
+			</td>
+			<td>
+				<div class="btn-group btn-group-sm">
+					<button class="save_event_from_facebook btn btn-small btn-primary">Save this event</button>
+				</div>
+			</td>
+		</tr>
+	{{/each}}
+</tbody>

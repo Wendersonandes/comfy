@@ -22,8 +22,7 @@ class Comfy::Admin::Cms::EventsController < Comfy::Admin::Cms::BaseController
   def create
     respond_to do |format|
       if @event.save
-        format.html { redirect_to :action => :index, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        format.json { render :json => @event, status: :created }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -61,7 +60,12 @@ class Comfy::Admin::Cms::EventsController < Comfy::Admin::Cms::BaseController
 		graph = Koala::Facebook::API.new(user_token)
 		events_facebook = graph.get_object("#{@site.facebook_profile}/events")
 		saved_events_facebook_ids = @site.events.where("facebook_id IS NOT NULL").pluck(:facebook_id)
-		@events = events_facebook.reject { |h| saved_events_facebook_ids.include?(h["id"]) }
+		filtered_events = events_facebook.reject { |h| saved_events_facebook_ids.include?(h["id"]) }
+		@events = filtered_events.map { |evt| {	:title => evt["name"], 
+																						:facebook_id => evt["facebook_id"],
+																						:description => evt["description"],
+																						:start => evt["start_time"]
+																					}}
     respond_to do |format|
 			format.json { render :json => @events, status: :created  }
 		end

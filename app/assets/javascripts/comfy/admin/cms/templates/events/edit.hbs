@@ -1,0 +1,20 @@
+<form id="quick_event_edit">
+	<input type="hidden" name="event[id]" value="{{id}}">
+	<input type="hidden" name="event[start]" value="{{start}}">
+	<div class="form-group">
+    <label for="eventInputTitle">Título do evento</label>
+    <input type="text" class="form-control" id="eventInputTitle" placeholder="título do evento" name="event[title]" value="{{title}}">
+  </div>
+	<div class="form-group">
+    <label for="eventInputDescription">Descrição do evento</label>
+		<textarea class="form-control" name="event[description]" rows="5">{{description}}</textarea>
+  </div>
+	<div class="form-group">
+    <label for="eventInputTitle">Ticket do evento</label>
+    <input type="text" class="form-control" id="eventInputTitle" placeholder="Url para compra do ticket" name="event[url_ticket]" value="{{url_ticket}}">
+  </div>
+
+	<div class="btn-group btn-group-sm">
+		<button id="event_edit_submit" class="update_event btn btn-small btn-primary" name="submit">Update this event</button>
+	</div>
+</form>

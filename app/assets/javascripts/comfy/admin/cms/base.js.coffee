@@ -29,6 +29,12 @@ window.CMS.init = ->
   CMS.recover_image()
   CMS.load_events_from_facebook()
   CMS.save_event_from_facebook()
+  CMS.quick_edit_facebook_event()
+  CMS.quick_edit_event()
+  CMS.quick_edit_video()
+  CMS.quick_save_video()
+  CMS.quick_update_video()
+  CMS.load_videos_from_youtube()
 
 window.CMS.slugify = ->
   slugify = (str) ->

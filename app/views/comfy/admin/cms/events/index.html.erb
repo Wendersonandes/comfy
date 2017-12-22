@@ -1,7 +1,11 @@
+<% content_for :right_column do %>
+	<div id="updateContainer"></div>
+<% end %>
 <div class="page-header">
   <%= link_to 'New Event', new_comfy_admin_cms_site_event_path(@site), :class => 'btn btn-default pull-right' %>
-	<button id="getFacebookEvents" class="btn btn-default pull-right">
-		Get my events from facebook
+	<button id="getFacebookEvents" class="btn btn-primary pull-right">
+		<i class="fa fa-facebook-square" aria-hidden="true"></i>
+		Import events from facebook
 	</button>
 
   <h2>
@@ -14,12 +18,12 @@
   <tbody class="sortable">
     <tr class="table-head">
       <th>Order</th>
-      <th class="main">Start</th>
-      <th>Title</th>
-      <th></th>
+      <th>Start</th>
+      <th class="main">Title</th>
+      <th>Actions</th>
     </tr>
     <% @events.each do |event| %>
-      <tr id="<%= dom_id(event) %>">
+      <tr class="tr-event-body" id="<%= dom_id(event) %>" data-event="<%= event.to_json %>">
         <td>
           <div class="icon">
             <div class="dragger">

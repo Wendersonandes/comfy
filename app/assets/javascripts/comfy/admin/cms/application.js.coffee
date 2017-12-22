@@ -29,5 +29,6 @@
 #= require comfy/admin/cms/images
 #= require comfy/admin/cms/files
 #= require comfy/admin/cms/events
+#= require comfy/admin/cms/videos
 #= require comfy/admin/cms/custom
 #= require_tree ./templates/
