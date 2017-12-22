@@ -44,6 +44,7 @@ class ActionDispatch::Routing::Mapper
 							put :reorder, :on => :collection
 						end
 						resources :videos do
+							get :get_videos_from_youtube, :on => :collection
 							put :reorder, :on => :collection
 						end
 						resources :galleries do
