@@ -1,0 +1,49 @@
+<% content_for :right_column do %>
+	<div id="updateContainer"></div>
+<% end %>
+<div class="page-header">
+  <%= link_to 'New Video', new_comfy_admin_cms_site_video_path(@site), :class => 'btn btn-default pull-right' %>
+	<button id="videosFromYoutube" class="btn btn-primary pull-right">
+		<i class="fa fa-youtube-play" aria-hidden="true"></i>
+		Import videos from Youtube
+	</button>
+  <h2>
+    <%= 'Videos' %>
+  </h2>
+</div>
+<%= paginate @videos, :theme => 'comfy' %>
+<table class="table table-hover table-bordered">
+  <tbody class="sortable">
+    <tr class="table-head">
+      <th>Order</th>
+      <th>Thumb</th>
+      <th class="main">Description</th>
+      <th>Actions</th>
+    </tr>
+    <% @videos.each do |video| %>
+      <tr class="tr-video-body" id="<%= dom_id(video) %>" data-video="<%= video.to_json %>">
+        <td>
+          <div class="icon">
+            <div class="dragger">
+              <span>&#8645;</span>
+            </div>
+          </div>
+        </td>
+        <td>
+        </td>
+        <td class="main">
+          <%= video.description %>
+        </td>
+
+        <td>
+          <div class="btn-group btn-group-sm">
+            <%= link_to 'Edit', edit_comfy_admin_cms_site_video_path(@site, video), :class => 'btn btn-default' %>
+            <%= link_to 'Delete', comfy_admin_cms_site_video_path(@site, video), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @videos, :theme => 'comfy' %>
+

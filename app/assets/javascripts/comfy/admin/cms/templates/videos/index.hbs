@@ -1,0 +1,22 @@
+<tbody>
+	<tr class="table-head">
+		<th>Thumb</th>
+		<th class="main">Description</th>
+		<th>Actions</th>
+	</tr>
+	{{#each this as |video|}}
+		<tr class="tr-video-body" id="{{id}}" data-video="{{json video}}">
+			<td >
+				<img src="{{thumbnail}}" >
+			</td>
+			<td class="main">
+				{{short_description}}
+			</td>
+			<td>
+				<div class="btn-group btn-group-sm">
+					<button class="save_video_from_youtube btn btn-small btn-primary">Save this video</button>
+				</div>
+			</td>
+		</tr>
+	{{/each}}
+</tbody>

@@ -20,12 +20,15 @@ class Comfy::Admin::Cms::VideosController < Comfy::Admin::Cms::BaseController
   end
 
   def create
-    @video.save!
-    flash[:success] = 'video created'
-    redirect_to :action => :index, :id => @video
-  rescue ActiveRecord::RecordInvalid
-    flash.now[:danger] = 'Failed to create video'
-    render :action => :new
+    respond_to do |format|
+      if @video.save
+        format.html { redirect_to :action => :index, notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @video }
+      else
+        format.html { render :new }
+        format.json { render json: @video.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
@@ -51,6 +54,24 @@ class Comfy::Admin::Cms::VideosController < Comfy::Admin::Cms::BaseController
     end
     head :ok
   end
+
+	def get_videos_from_youtube
+		saved_videos_from_youtube = @site.videos.where("youtube_id IS NOT NULL").pluck(:youtube_id)
+		channel = Yt::Channel.new(:id => @site.youtube_profile)
+		channel_videos = channel.videos.map { |vid| {
+																						:youtube_id => vid.id, 
+																						:title => vid.title,
+																						:description => vid.description, 
+																						:short_description => vid.description.truncate(75), 
+																						:thumbnail => vid.snippet.thumbnails["default"]["url"]} }
+
+		@videos = channel_videos.reject { |h| saved_videos_from_youtube.include?(h[:youtube_id]) }
+
+    respond_to do |format|
+			format.json { render :json => @videos, status: :created  }
+		end
+
+	end
 
 
 protected

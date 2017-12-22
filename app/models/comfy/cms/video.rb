@@ -5,7 +5,6 @@ class Comfy::Cms::Video < ActiveRecord::Base
 
   # -- Validations ----------------------------------------------------------
   validates :site_id, :presence   => true
-	validates :url, :presence => true
 
   # -- Relationships --------------------------------------------------------
   belongs_to :site
