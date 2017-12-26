@@ -10,7 +10,7 @@ class Comfy::Admin::Cms::SitesController < Comfy::Admin::Cms::BaseController
   def index
     return redirect_to :action => :new if ::Comfy::Cms::Site.count == 0
     @site = ::Comfy::Cms::Site.find_by_id(session[:site_id])
-    @sites ||= ::Comfy::Cms::Site.all
+		@sites ||= current_user.sites
   end
 
   def new
@@ -49,6 +49,7 @@ protected
 
   def build_site
     @site = ::Comfy::Cms::Site.new(site_params)
+		@site.user = current_user
     @site.hostname ||= request.host.downcase
   end
 
