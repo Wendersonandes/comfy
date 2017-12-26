@@ -17,6 +17,8 @@ class Comfy::Cms::Site < ActiveRecord::Base
     site.has_many :categories
   end
 
+	belongs_to :user
+
   # -- Callbacks ------------------------------------------------------------
   before_validation :assign_identifier,
                     :assign_hostname,
