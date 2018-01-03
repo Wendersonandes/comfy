@@ -12,6 +12,7 @@ class Comfy::Cms::ContentController < Comfy::Cms::BaseController
                 :authorize,
                 :only => :show
 
+  skip_before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, :with => :page_not_found
 
   def show
