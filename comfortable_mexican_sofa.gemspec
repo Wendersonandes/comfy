@@ -43,8 +43,6 @@ Gem::Specification.new do |s|
 	s.add_dependency "nokogiri",					'>= 1.7.2'
 	s.add_dependency 'jquery-fileupload-rails', '>= 0.4.7'
 	s.add_dependency 'active_model_serializers', '>= 0.10.5'
-	s.add_dependency 'handlebars_assets', '>= 0.23.2'
-#SEO stuff
-	s.add_dependency 'meta-tags', '>= 2.7'
+	s.add_dependency 'handlebars_assets', '~> 0.23.2'
 
 end
