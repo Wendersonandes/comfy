@@ -57,7 +57,7 @@ class Comfy::Admin::Cms::VideosController < Comfy::Admin::Cms::BaseController
 
 	def get_videos_from_youtube
 		saved_videos_from_youtube = @site.videos.where("youtube_id IS NOT NULL").pluck(:youtube_id)
-		channel = Yt::Channel.new(:id => @site.youtube_profile)
+		channel = Yt::Channel.new(:id => @site.clean_youtube_profile)
 		channel_videos = channel.videos.map { |vid| {
 																						:youtube_id => vid.id, 
 																						:title => vid.title,

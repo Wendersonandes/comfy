@@ -2,7 +2,10 @@ class Comfy::Cms::Site < ActiveRecord::Base
   self.table_name = 'comfy_cms_sites'
 
 	URL_FORMATS = { 
-									:youtube => /^(https?:\/\/)?(www\.)?youtube.com\/(channel\/|user\/)(?<channel>[^&]+)/		}
+		:youtube => /^(https?:\/\/)?(www\.)?youtube.com\/(channel\/|user\/)(?<channel>[^&]+)/										:facebook => /^(https?:\/\/)?(www\.)?facebook.com\/(?<profile>[^&]+)/
+		:soundcloud => /^(https?:\/\/)?(www\.)?soundcloud.com\/(?<profile>[^&]+)/
+		:instagram => /^(https?:\/\/)?(www\.)?instagram.com\/(?<profile>[^&]+)/
+	}
 
   # -- Relationships --------------------------------------------------------
   with_options :dependent => :destroy do |site|
@@ -66,9 +69,24 @@ class Comfy::Cms::Site < ActiveRecord::Base
     '//' + [self.hostname, public_cms_path, self.path].join('/').squeeze('/')
   end
 
-	def extract_youtube_profile
+	def clean_youtube_profile
 		match = URL_FORMATS[:youtube].match(self.youtube_profile)
 		return match[:channel] if match
+	end
+
+	def clean_facebook_profile
+		match = URL_FORMATS[:facebook].match(self.facebook_profile)
+		return match[:profile] if match
+	end
+
+	def clean_instagram_profile
+		match = URL_FORMATS[:instagram].match(self.instagram_profile)
+		return match[:profile] if match
+	end
+
+	def clean_soundcloud_profile
+		match = URL_FORMATS[:soundcloud].match(self.soundcloud_profile)
+		return match[:profile] if match
 	end
 
   # When removing entire site, let's not destroy content from other sites

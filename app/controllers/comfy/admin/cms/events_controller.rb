@@ -58,7 +58,7 @@ class Comfy::Admin::Cms::EventsController < Comfy::Admin::Cms::BaseController
 		user_auth = current_user.authentications.find_by_provider('facebook')
 		user_token = user_auth.token
 		graph = Koala::Facebook::API.new(user_token)
-		events_facebook = graph.get_object("#{@site.facebook_profile}/events")
+		events_facebook = graph.get_object("#{@site.clean_facebook_profile}/events")
 		saved_events_facebook_ids = @site.events.where("facebook_id IS NOT NULL").pluck(:facebook_id)
 		filtered_events = events_facebook.reject { |h| saved_events_facebook_ids.include?(h["id"]) }
 		@events = filtered_events.map { |evt| {	:title => evt["name"], 
