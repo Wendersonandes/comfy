@@ -1,6 +1,9 @@
 class Comfy::Cms::Site < ActiveRecord::Base
   self.table_name = 'comfy_cms_sites'
 
+	URL_FORMATS = { 
+									:youtube => /^(https?:\/\/)?(www\.)?youtube.com\/(channel\/|user\/)(?<channel>[^&]+)/		}
+
   # -- Relationships --------------------------------------------------------
   with_options :dependent => :destroy do |site|
     site.has_many :layouts
@@ -62,6 +65,11 @@ class Comfy::Cms::Site < ActiveRecord::Base
     public_cms_path = ComfortableMexicanSofa.config.public_cms_path || '/'
     '//' + [self.hostname, public_cms_path, self.path].join('/').squeeze('/')
   end
+
+	def extract_youtube_profile
+		match = URL_FORMATS[:youtube].match(self.youtube_profile)
+		return match[:channel] if match
+	end
 
   # When removing entire site, let's not destroy content from other sites
   # Since before_destroy doesn't really work, this does the trick
