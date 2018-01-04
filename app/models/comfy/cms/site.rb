@@ -2,8 +2,9 @@ class Comfy::Cms::Site < ActiveRecord::Base
   self.table_name = 'comfy_cms_sites'
 
 	URL_FORMATS = { 
-		:youtube => /^(https?:\/\/)?(www\.)?youtube.com\/(channel\/|user\/)(?<channel>[^&]+)/										:facebook => /^(https?:\/\/)?(www\.)?facebook.com\/(?<profile>[^&]+)/
-		:soundcloud => /^(https?:\/\/)?(www\.)?soundcloud.com\/(?<profile>[^&]+)/
+		:youtube => /^(https?:\/\/)?(www\.)?youtube.com\/(channel\/|user\/)(?<channel>[^&]+)/,
+		:facebook => /^(https?:\/\/)?(www\.)?facebook.com\/(?<profile>[^&]+)/,
+		:soundcloud => /^(https?:\/\/)?(www\.)?soundcloud.com\/(?<profile>[^&]+)/,
 		:instagram => /^(https?:\/\/)?(www\.)?instagram.com\/(?<profile>[^&]+)/
 	}
 
