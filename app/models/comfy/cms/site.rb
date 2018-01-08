@@ -71,22 +71,22 @@ class Comfy::Cms::Site < ActiveRecord::Base
   end
 
 	def clean_youtube_profile
-		match = URL_FORMATS[:youtube].match(self.youtube_profile)
+		match = PROFILE_URL_FORMATS[:youtube].match(self.youtube_profile)
 		return match[:channel] if match
 	end
 
 	def clean_facebook_profile
-		match = URL_FORMATS[:facebook].match(self.facebook_profile)
+		match = PROFILE_URL_FORMATS[:facebook].match(self.facebook_profile)
 		return match[:profile] if match
 	end
 
 	def clean_instagram_profile
-		match = URL_FORMATS[:instagram].match(self.instagram_profile)
+		match = PROFILE_URL_FORMATS[:instagram].match(self.instagram_profile)
 		return match[:profile] if match
 	end
 
 	def clean_soundcloud_profile
-		match = URL_FORMATS[:soundcloud].match(self.soundcloud_profile)
+		match = PROFILE_URL_FORMATS[:soundcloud].match(self.soundcloud_profile)
 		return match[:profile] if match
 	end
 

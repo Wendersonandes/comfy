@@ -1,0 +1,5 @@
+.page-header
+  %h2 New Subscription
+
+= comfy_form_for @subscription, :as => :subscription, :url => {:action => :create}  do |form|
+  = render form

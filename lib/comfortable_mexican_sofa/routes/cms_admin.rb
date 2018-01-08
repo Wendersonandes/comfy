@@ -58,6 +58,7 @@ class ActionDispatch::Routing::Mapper
 							get	:trash_index, :on => :collection
 							post :recover, :on => :member
 						end
+						resources :subscriptions
 						resources :slides do
 							put :reorder, :on => :collection
 						end

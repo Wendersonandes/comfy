@@ -1,0 +1,45 @@
+<% content_for :right_column do %>
+	<div id="updateContainer"></div>
+<% end %>
+<div class="page-header">
+  <%= link_to 'New Subscription', new_comfy_admin_cms_site_subscription_path(@site), :class => 'btn btn-default pull-right' %>
+  <h2>
+    <%= 'Subscriptions' %>
+  </h2>
+
+</div>
+<%= paginate @subscriptions, :theme => 'comfy' %>
+<table class="table table-hover table-bordered">
+  <tbody class="sortable">
+    <tr class="table-head">
+      <th></th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    <% @subscriptions.each do |subscription| %>
+      <tr class="tr-subscription-body" id="<%= dom_id(subscription) %>" data-subscription="<%= subscription.to_json %>">
+        <td>
+          <div class="icon">
+            <div class="">
+              <span>&#8645;</span>
+            </div>
+          </div>
+        </td>
+        <td class="main">
+          <%= subscription.username %>
+        </td>
+        <td>
+          <%= subscription.email %>
+        </td>
+        <td>
+          <div class="btn-group btn-group-sm">
+            <%= link_to 'Edit', edit_comfy_admin_cms_site_subscription_path(@site, subscription), :class => 'btn btn-default' %>
+            <%= link_to 'Delete', comfy_admin_cms_site_subscription_path(@site, subscription), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @subscriptions, :theme => 'comfy' %>
